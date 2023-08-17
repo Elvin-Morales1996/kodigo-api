@@ -39,20 +39,39 @@ case '/api-v1/bootcamps/create':
     break;
 
     //PUT: MODIFICAR
-case '/api-v1/bootcamps/put':
+case '/api-v1/bootcamps/update/4':
     //estado ok
     http_response_code(200);
+    require_once './handlers/bootcamps.handler.php';
+    $url = $_SERVER['REQUEST_URI'];
+    $slug = basename(parse_url($url, PHP_URL_PATH));
+
+    $data['slug']=$slug;
+
+    $resulta = modificar($data);
+    echo json_encode([
+        'mensaje' => 'bootcamp modificado',
+        'operacion' => $resulta
+    ]);
+
+
     echo json_encode([
             'message' => 'modificar un bootcamps'
     ]);
     break;
 
     //DELETE: ELIMINAR UN REGISTRO
-case '/api-v1/bootcamps/delete':
+case '/api-v1/bootcamps/delete/2':
     //estado 200: ok
     http_response_code(200);
+    //RECIBE PARA METRO DESDE LA URL 
+    $url = $_SERVER['REQUEST_URI'];
+    $slug = basename(parse_url($url, PHP_URL_PATH));
+    require_once ('./handlers/bootcamps.handler.php');
+    $resulta = deletebootcamp($slug);
     echo json_encode([
-            'message' => 'eliminar un bootcamps'
+        "mensaje" => "bootcamp eliminado exitosamente",
+        "operacion" =>$resulta
     ]);
     break;
 default:

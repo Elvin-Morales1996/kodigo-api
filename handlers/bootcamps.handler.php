@@ -54,9 +54,49 @@ function addNewBootcamp($data) {
   return $result;
 }
 
+//eliminar un bootcamp
 
+function deletebootcamp($id){
+  $conn = conectarbase();
 
+  $sql = "DELETE FROM bootcamps WHERE id_bootcamp = '$id'";
 
+  $resulta = mysqli_query($conn, $sql);
+
+  if (!$resulta) {
+
+    die("error al borrar un bootcamp;".mysqli_error($conn));
+
+  }
+  mysqli_close($conn);
+  return $resulta;
+
+}
+
+//FUNCION MODIFICAR UN BOOTCAMP
+
+function modificar($data){
+$conn = conectarbase();
+
+  $id = $data['slug'];
+  $title = $data['title'];
+  $description = $data['description'];
+  $start_bootcamp = $data['start_bootcamp'];
+  $end_bootcamp = $data['end_bootcamp'];
+  $modules = $data['modules'];
+
+  $sql = "UPDATE bootcamps SET title= '$title', description = '$description', start_bootcamp = '$start_bootcamp', end_bootcamp = '$end_bootcamp', modules = '$modules' WHERE id_bootcamp = '$id'";
+
+  $resulta = mysqli_query($conn, $sql);
+
+  if (!$resulta) {
+    die("error al modificar el bootcamp".mysqli_error($conn));
+  }
+
+  mysqli_close($conn);
+  return $resulta;
+
+}
 
 
 
