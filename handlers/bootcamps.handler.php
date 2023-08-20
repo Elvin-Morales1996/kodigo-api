@@ -85,7 +85,7 @@ $conn = conectarbase();
   $end_bootcamp = $data['end_bootcamp'];
   $modules = $data['modules'];
 
-  $sql = "UPDATE bootcamps SET title= '$title', description = '$description', start_bootcamp = '$start_bootcamp', end_bootcamp = '$end_bootcamp', modules = '$modules' WHERE id_bootcamp = '$id'";
+  $sql = "UPDATE bootcamps SET title= '$title', description= '$description', start_bootcamp= '$start_bootcamp', end_bootcamp= '$end_bootcamp', modules= '$modules' WHERE id_bootcamp = '$id'";
 
   $resulta = mysqli_query($conn, $sql);
 
